@@ -1,6 +1,6 @@
 # Historic - Vim save history using git
 
-This is a simple vim plugin that stores each save vim to a git repo.
+This is a simple vim plugin that stores each save vim makes to a git repo.
 
 ## Requires
 * git
