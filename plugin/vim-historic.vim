@@ -1,17 +1,17 @@
-if exists("g:localHistoryInstalled")
+if exists("g:historicInstalled")
 	finish
 else
-	let g:localHistoryInstalled = 1
+	let g:historicInstalled = 1
 endif
 
-if !exists("g:localHistoryBackupRepoLocation")
-	let g:localHistoryBackupRepoLocation = '~/.vim.backup'
+if !exists("g:historicBackupRepoLocation")
+	let g:historicBackupRepoLocation = '~/.vim.backup'
 endif
 
 let s:installPath = expand('<sfile>:p:h')
 
 function! s:backup(filepath)
-	:let output = system("sh " . s:installPath . "/../bin/backup.sh " . g:localHistoryBackupRepoLocation . " " . a:filepath)
+	:let output = system("sh " . s:installPath . "/../bin/backup.sh " . g:historicBackupRepoLocation . " " . a:filepath)
 endfunction
 
 function! s:listHistory(filepath)
@@ -24,4 +24,4 @@ endfunction
 command! HistoricList :call s:listHistory(expand("%:p"))
 command! HistoricBackup :call s:backup(expand("%:p"))
 
-autocmd! BufWritePost * :HistoricBackup<cr>
+autocmd! BufWritePost * :HistoricBackup
