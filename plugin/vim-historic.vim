@@ -5,9 +5,13 @@
 " Created April 2011
 
 if exists("g:historicInstalled")
-	finish
+"	finish
 else
 	let g:historicInstalled = 1
+endif
+
+if !exists("g:historicBackupOnSave")
+	let g:historicBackupOnSave = 1
 endif
 
 " Dependence Check
@@ -45,4 +49,6 @@ command! HistoricList :call s:listHistory(expand("%:p"))
 command! HistoricCompare :call s:compareWithHistory(expand("%:p"))
 command! HistoricReplace :call s:replaceWithHistory(expand("%:p"))
 
-autocmd! BufWritePost * :HistoricBackup
+if g:historicBackupOnSave == 1
+	autocmd! BufWritePost * :HistoricBackup
+endif
