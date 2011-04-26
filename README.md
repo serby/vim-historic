@@ -6,6 +6,33 @@ This is a simple vim plugin that stores each save vim makes to a git repo. I wro
 * git
 * bash
 
+## Usage
+
+Create a backup of the last save for the current file. If the file hasn't changed then no backup will be made
+
+      :HistoricBackup
+
+Show available revisions for file
+
+      :HistoricList
+
+(Incomplete) Compare the current buffer with a historic version. If you omit revision the latest revision will be used
+
+      :HistoricCompare <Revision>
+
+(Incomplete) Replace the current buffer with a historic version. If you omit revision the latest revision will be used
+
+      :HistoricReplace <Revision>
+
+By default Historic will bind to the save (BufWritePost) of every filetype and run :HistoricBackup. If you would like to disable this function and action the backup manually do the following in you .vimrc.
+
+      let g:historicBackupOnSave = 0
+
+By default Historic will create the backup repo in ~/.vim.backup you can change by defining the location in your .vimrc as below
+
+	let g:historicBackupRepoLocation = "~/mycustomlocation"
+
+
 ## Credits
 [Paul Serby](https://github.com/PabloSerbo/)
 
