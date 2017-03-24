@@ -30,7 +30,11 @@ By default Historic will bind to the save (BufWritePost) of every filetype and r
 
 By default Historic will create the backup repo in ~/.vim.backup you can change by defining the location in your .vimrc as below
 
-	let g:historicBackupRepoLocation = "~/mycustomlocation"
+      let g:historicBackupRepoLocation = "~/mycustomlocation"
+
+If you wish to perform backups in your own way, you can provide a path to different backup script
+
+      let g:historicBackupScriptLocation = "~/myBackupScript.sh"
 
 
 ## Credits
