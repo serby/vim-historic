@@ -19,14 +19,18 @@ if (system("which git") == "")
 	throw "Could not find git"
 end
 
+let s:installPath = expand("<sfile>:p:h")
+
 if !exists("g:historicBackupRepoLocation")
 	let g:historicBackupRepoLocation = "~/.vim.backup"
 endif
 
-let s:installPath = expand("<sfile>:p:h")
+if !exists("g:historicBackupScriptLocation")
+    let g:historicBackupScriptLocation = s:installPath . "/../bin/backup.sh"
+endif
 
 function! s:backup(filepath)
-	:let output = system("sh " . s:installPath . "/../bin/backup.sh " . g:historicBackupRepoLocation . " " . a:filepath)
+	:let output = system("sh " . g:historicBackupScriptLocation . " " . g:historicBackupRepoLocation . " " . a:filepath)
 endfunction
 
 function! s:listHistory(filepath)
