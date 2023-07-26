@@ -26,6 +26,9 @@ endif
 let s:installPath = expand("<sfile>:p:h")
 
 function! s:backup(filepath)
+	if exists('b:noBackups')
+		return
+	endif
 	:let output = system("sh " . s:installPath . "/../bin/backup.sh " . g:historicBackupRepoLocation . " " . a:filepath)
 endfunction
 
@@ -50,5 +53,6 @@ command! HistoricCompare :call s:compareWithHistory(expand("%:p"))
 command! HistoricReplace :call s:replaceWithHistory(expand("%:p"))
 
 if g:historicBackupOnSave == 1
+	autocmd! Filetype gitcommit let b:noBackups=1
 	autocmd! BufWritePost * :HistoricBackup
 endif
